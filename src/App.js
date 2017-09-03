@@ -33,13 +33,13 @@ class App extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <input type="text" onChange={ (event) => this.setState({id:event.target.value, result: ''})} placeholder="Personal Galactic Identifier" required />
+            <input type="text" name="trip-id" onChange={ (event) => this.setState({id:event.target.value, result: ''})} placeholder="Personal Galactic Identifier" required />
           </div>
           <div>
-            <input type="text" onChange={ (event) => this.setState({destination:event.target.value, result: ''})} placeholder="Destination" required />
+            <input type="text" name="trip-destination" onChange={ (event) => this.setState({destination:event.target.value, result: ''})} placeholder="Destination" required />
           </div>
           <div>
-            <input type="date" onChange={ (event) => this.setState({date:event.target.value, result: ''})} placeholder="Date" required />
+            <input type="date" name="trip-date" onChange={ (event) => this.setState({date:event.target.value, result: ''})} placeholder="Date" required />
           </div>
           <button type="submit">Submit travel</button>
         </form>
