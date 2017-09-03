@@ -1,18 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  state = {
+    id: '',
+    destination: '',
+    date: '',
+    result: ''
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch('http://timetravel-api-orthogenic-flesher.local.pcfdev.io/trip', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: this.state.id,
+        destination: this.state.destination,
+        date: this.state.date,
+      })
+    })
+    .then(response => {
+      this.setState({result:response.statusText});
+    })
+  };
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input type="text" onChange={ (event) => this.setState({id:event.target.value, result: ''})} placeholder="Personal Galactic Identifier" required />
+          </div>
+          <div>
+            <input type="text" onChange={ (event) => this.setState({destination:event.target.value, result: ''})} placeholder="Destination" required />
+          </div>
+          <div>
+            <input type="date" onChange={ (event) => this.setState({date:event.target.value, result: ''})} placeholder="Date" required />
+          </div>
+          <button type="submit">Submit travel</button>
+        </form>
+        <div>
+          {this.state.result}
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }

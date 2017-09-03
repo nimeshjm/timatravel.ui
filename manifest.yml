@@ -1,0 +1,8 @@
+---
+applications:
+  - name: timetravel-ui
+    path: build
+    memory: 64MB
+    disk: 64MB
+    buildpack: staticfile_buildpack
+    random-route: true
