@@ -8,3 +8,4 @@ it('renders the form', () => {
 
   expect(div.getElementsByTagName("input").length).toEqual(3);
 });
+
